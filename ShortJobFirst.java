@@ -20,7 +20,6 @@ public class ShortJobFirst {
         int time = 0; //Starting time
         int minimum = 100000; //Initial minimum which will be compared against remainTime
         int shortest = 0; //Initial shortest job
-        boolean isShortJob = false;
         
         int complete = 0; //Once complete finishes through every process it will exit the loop
         while (complete != lengthArr){
@@ -30,11 +29,8 @@ public class ShortJobFirst {
                     //Checked if it is the short job
                     minimum = remainTime[i];
                     shortest = i;
-                    isShortJob = true;
                 }
             }
-
-            if (isShortJob == false) { time++; continue;} //Skips to next iteration of while loop
 
             remainTime[shortest]--; //Take time off the short job
             minimum = remainTime[shortest]; //Set the new minimum
@@ -43,7 +39,6 @@ public class ShortJobFirst {
 
             if (remainTime[shortest] == 0) { //Checks if the process is complete
                 complete++; //One process is complete
-                isShortJob = false;
                 waitTime[shortest] = (time+1) - processArr[shortest].burstTime - processArr[shortest].arrTime;
                 //Calculated the waitTime of that process
                 if (waitTime[shortest] < 0) {waitTime[shortest] = 0;}
