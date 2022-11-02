@@ -5,10 +5,11 @@ public class ShortJobFirst {
                 new Process(1,4),
                 new Process(2,9),
                 new Process(3,5)};
-        WaitTime(processArr, processArr.length); //Calls the WaitTime function with the process Array function and length
+        WaitTime(processArr); //Calls the WaitTime function with the process Array function and length
     }
 
-    public static void WaitTime(Process[] processArr, int lengthArr) {
+    public static void WaitTime(Process[] processArr) {
+        int lengthArr = processArr.length;
         int waitTime[] = new int[lengthArr]; //Wait time function array
         int remainTime[] = new int[lengthArr]; //Remaining time function array
 
@@ -19,7 +20,6 @@ public class ShortJobFirst {
         int time = 0; //Starting time
         int minimum = 100000; //Initial minimum which will be compared against remainTime
         int shortest = 0; //Initial shortest job
-        int finishTime;
         boolean isShortJob = false;
         
         int complete = 0; //Once complete finishes through every process it will exit the loop
@@ -44,8 +44,7 @@ public class ShortJobFirst {
             if (remainTime[shortest] == 0) { //Checks if the process is complete
                 complete++; //One process is complete
                 isShortJob = false;
-                finishTime = time + 1;
-                waitTime[shortest] = finishTime - processArr[shortest].burstTime - processArr[shortest].arrTime;
+                waitTime[shortest] = (time+1) - processArr[shortest].burstTime - processArr[shortest].arrTime;
                 //Calculated the waitTime of that process
                 if (waitTime[shortest] < 0) {waitTime[shortest] = 0;}
             }
