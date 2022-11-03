@@ -1,10 +1,20 @@
+import java.util.Scanner;
 public class ShortJobFirst {
-    public static void main(String[] args){
-        Process processArr[] = {//Creates a process object array, with inputs Arrival Time and Burst Time
-                new Process(0,8),
-                new Process(1,4),
-                new Process(2,9),
-                new Process(3,5)};
+    public static void main(String[] args) throws IllegalArgumentException{
+        Scanner sc = new Scanner(System.in);
+        int userArr, userBurst;
+        System.out.print("Enter number of processes: ");
+        int numofProc = sc.nextInt();
+        if (numofProc < 0){ throw new IllegalArgumentException();}
+        Process processArr[] = new Process[numofProc];
+        for (int i = 0; i < numofProc; i++){
+            System.out.print("Enter Arrival Time: ");
+            userArr = sc.nextInt();
+            System.out.print("Enter Burst Time: ");
+            userBurst = sc.nextInt();
+            if (userArr < 0 || userBurst < 0){ throw new IllegalArgumentException();}
+            processArr[i] = new Process(userArr, userBurst);
+        }
         WaitTime(processArr); //Calls the WaitTime function with the process Array function and length
     }
 
@@ -51,7 +61,7 @@ public class ShortJobFirst {
         for (int i = 0; i < lengthArr; i++){ //Adds total wait time of waitTime array
             totalWaitTime += waitTime[i];
         }
-        System.out.print((double)totalWaitTime/lengthArr); //Prints average wait time
+        System.out.print("Total Wait Time is " + (double)totalWaitTime/lengthArr + "ms."); //Prints average wait time
     }
 }
 
