@@ -1,0 +1,10 @@
+class Process{
+    int arrTime;
+    int burstTime;
+
+    public Process(int arrTime, int burstTime){
+        this.arrTime = arrTime;
+        this.burstTime = burstTime;
+    }
+
+}
