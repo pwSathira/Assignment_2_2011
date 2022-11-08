@@ -1,4 +1,4 @@
-class Process{
+class Process{//Process class shared between algorithms
     int arrTime;
     int burstTime;
 
