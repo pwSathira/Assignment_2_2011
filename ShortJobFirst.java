@@ -22,16 +22,16 @@ public class ShortJobFirst {
         int lengthArr = processArr.length;
         int waitTime[] = new int[lengthArr]; //Wait time function array
         int remainTime[] = new int[lengthArr]; //Remaining time function array
+        int time = 0; //Starting time
+        int minimum = 100000; //Initial minimum which will be compared against remainTime
+        int shortest = 0; //Initial shortest job
+        int complete = 0; //Once complete finishes through every process it will exit the loop
+        int totalWaitTime = 0;
 
         for (int i = 0; i < lengthArr; i++){ //Makes a copy of processArr and assigns to remainTime
             remainTime[i] = processArr[i].burstTime;
         }
 
-        int time = 0; //Starting time
-        int minimum = 100000; //Initial minimum which will be compared against remainTime
-        int shortest = 0; //Initial shortest job
-        
-        int complete = 0; //Once complete finishes through every process it will exit the loop
         while (complete != lengthArr){
 
             for (int i = 0; i < lengthArr; i++){ //Iterates through both processArr and remainTime
@@ -57,7 +57,6 @@ public class ShortJobFirst {
             time++; //Go up 1ms in time
         }
 
-        int totalWaitTime = 0;
         for (int i = 0; i < lengthArr; i++){ //Adds total wait time of waitTime array
             totalWaitTime += waitTime[i];
         }
@@ -65,12 +64,3 @@ public class ShortJobFirst {
     }
 }
 
-class Process{
-    int arrTime;
-    int burstTime;
-
-    public Process(int arrTime, int burstTime){
-        this.arrTime = arrTime;
-        this.burstTime = burstTime;
-    }
-}
